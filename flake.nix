@@ -13,9 +13,11 @@
             nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [ pkgs.minify ];
 
             preBuild = ''
-              cd cf-custom-resources && \
-              minify *.js -o ../internal/pkg/template/templates/custom-resources && \
-              cd ..
+              cd cf-custom-resources/lib && \
+              RES_DEST_DIR="../../internal/pkg/template/templates/custom-resources" && \
+              mkdir -p "$RES_DEST_DIR" && \
+              minify -o "$RES_DEST_DIR" *.js && \
+              cd ../..
             '';
           });
         };
