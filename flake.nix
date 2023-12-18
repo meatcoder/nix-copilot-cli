@@ -10,6 +10,7 @@
       in {
         packages = {
           default = pkgs.copilot-cli.overrideAttrs (oldAttrs: {
+            version = "1.32.1";
             nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [ pkgs.minify ];
 
             preBuild = ''
